@@ -11,7 +11,6 @@ import { BasicInterceptor } from './demo/components/auth/basic.interceptor';
 import { StorageService } from './demo/service/storage.service';
 import { ErrorInterceptor } from './demo/components/auth/error.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { ToastModule } from 'primeng/toast';
 
 @NgModule({
@@ -21,11 +20,6 @@ import { ToastModule } from 'primeng/toast';
         AppLayoutModule,
         LoginModule,
         ToastModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: false,
-            scope: './',
-            registrationStrategy: 'registerImmediately',
-        }),
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
