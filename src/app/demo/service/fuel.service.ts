@@ -7,44 +7,44 @@ import { StorageService } from './storage.service';
 @Injectable({
     providedIn: 'root',
 })
-export class ItemService {
+export class FuelService {
     constructor(private http: HttpClient, private storageService: StorageService) { }
 
     private getAPIURL(): Observable<string> {
         return this.storageService.getAPIURL();
     }
 
-    getItems(): Observable<any> {
+    getFuels(): Observable<any> {
         return this.getAPIURL().pipe(
             switchMap((url) => {
-                const apiUrl = `${url}/item`;
+                const apiUrl = `${url}/fuel`;
                 return this.http.get(apiUrl);
             })
         );
     }
 
-    createItem(data: any): Observable<any> {
+    createFuel(data: any): Observable<any> {
         return this.getAPIURL().pipe(
             switchMap((url) => {
-                const apiUrl = `${url}/item`;
+                const apiUrl = `${url}/fuel`;
                 return this.http.post(apiUrl, data);
             })
         );
     }
 
-    updateItem(id: string, data: any): Observable<any> {
+    updateFuel(id: string, data: any): Observable<any> {
         return this.getAPIURL().pipe(
             switchMap((url) => {
-                const apiUrl = `${url}/item/${id}`;
+                const apiUrl = `${url}/fuel/${id}`;
                 return this.http.put(apiUrl, data);
             })
         );
     }
 
-    deleteItem(id: string): Observable<any> {
+    deleteFuel(id: string): Observable<any> {
         return this.getAPIURL().pipe(
             switchMap((url) => {
-                const apiUrl = `${url}/item/${id}`;
+                const apiUrl = `${url}/fuel/${id}`;
                 return this.http.delete(apiUrl);
             })
         );

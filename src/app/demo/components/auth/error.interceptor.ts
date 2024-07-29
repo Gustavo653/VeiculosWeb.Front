@@ -21,6 +21,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                         detail: error.error.message,
                     });
                 } else if (error.status === 401) {
+                    console.log(request);
                     this.messageService.add({
                         severity: 'warn',
                         summary: 'Sua sessão expirou.',

@@ -64,9 +64,6 @@
                 <ng-container *ngIf="col.type == 'number'">
                     {{ _(rowData, col.field) | number }}
                 </ng-container>
-                <ng-container *ngIf="col.type == 'type'">
-                    {{ _(rowData, col.field) | type }}
-                </ng-container>
                 <ng-container *ngIf="col.type == 'checkbox-selection'">
                     <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
                 </ng-container>

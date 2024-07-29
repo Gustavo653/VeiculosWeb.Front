@@ -21,12 +21,8 @@ import { MenuRoutes } from '../demo/api/base';
 export class AppMenuComponent implements OnInit {
     model: any[] = MenuRoutes.filter((x) => {
         const role = this.authService.getRole();
-        const routeRoles = x.role;
-        if (role === 'admin') {
+        if (role === 'Admin') {
             return true;
-        }
-        if (routeRoles && Array.isArray(routeRoles)) {
-            return routeRoles.some((routeRole) => routeRole === role);
         }
         return false;
     });

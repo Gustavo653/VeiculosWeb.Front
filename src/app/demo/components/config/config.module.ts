@@ -18,13 +18,11 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FileUploadModule } from 'primeng/fileupload';
-import { CategoryComponent } from './category/category.component';
-import { ItemComponent } from './item/item.component';
+import { FuelComponent } from './fuel/fuel.component';
 
 @NgModule({
     declarations: [
-        CategoryComponent,
-        ItemComponent
+        FuelComponent
     ],
     imports: [
         CommonModule,

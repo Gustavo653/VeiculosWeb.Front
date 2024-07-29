@@ -57,7 +57,7 @@ export class AuthService {
         try {
             let data = await this.http.get<any>(`${url}/Account/Current`).toPromise();
             this.saveFirstName(data.object.name);
-            this.saveRole(data.object.userRoles[0].role.name);
+            this.saveRole(data.object.role);
         } catch (error) {
             status = 401;
         }

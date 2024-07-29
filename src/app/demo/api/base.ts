@@ -59,10 +59,15 @@ export interface RuntimeConfig {
 export const MenuRoutes = [
     {
         label: 'Geral',
-        role: ['Admin', 'Employee'],
+        role: ['Admin', 'Basic'],
         items: [
             {
-                label: 'Dashboard',
+                label: 'Comprar',
+                icon: 'pi pi-fw pi-chart-line',
+                routerLink: [''],
+            }, 
+            {
+                label: 'Vender',
                 icon: 'pi pi-fw pi-chart-line',
                 routerLink: [''],
             },
@@ -73,15 +78,10 @@ export const MenuRoutes = [
         role: ['Admin'],
         items: [
             {
-                label: 'Gerenciar Categorias',
+                label: 'Gerenciar Combustíveis',
                 icon: 'pi pi-fw pi-sliders-h',
-                routerLink: ['/config/categories'],
-            },
-            {
-                label: 'Gerenciar Itens',
-                icon: 'pi pi-fw pi-sliders-h',
-                routerLink: ['/config/items'],
-            },
+                routerLink: ['/config/fuels'],
+            }
         ],
     },
 ];

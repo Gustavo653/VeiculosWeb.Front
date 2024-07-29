@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { MessageServiceSuccess, TableColumn } from 'src/app/demo/api/base';
-import { ItemService } from 'src/app/demo/service/item.service';
+import { FuelService } from 'src/app/demo/service/fuel.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
-    templateUrl: './item.component.html',
+    templateUrl: './fuel.component.html',
     providers: [MessageService, ConfirmationService],
 })
-export class ItemComponent implements OnInit {
+export class FuelComponent implements OnInit {
     dialog: boolean = false;
     loading: boolean = true;
     cols: TableColumn[] = [];
     data: any[] = [];
-    addressesListbox: any[] = [];
     modalDialog: boolean = false;
     selectedRegistry: any = {};
     constructor(
         protected layoutService: LayoutService,
-        private itemService: ItemService,
+        private fuelService: FuelService,
         private confirmationService: ConfirmationService,
         private messageService: MessageService
     ) { }
@@ -97,14 +96,14 @@ export class ItemComponent implements OnInit {
             this.hideDialog();
             this.loading = true;
             if (data.id) {
-                this.itemService.updateItem(data.id, data).subscribe(() => {
+                this.fuelService.updateFuel(data.id, data).subscribe(() => {
                     this.messageService.add(MessageServiceSuccess);
                     this.fetchData();
                 }, () => {
                     this.loading = false;
                 });
             } else {
-                this.itemService.createItem(data).subscribe(() => {
+                this.fuelService.createFuel(data).subscribe(() => {
                     this.messageService.add(MessageServiceSuccess);
                     this.fetchData();
                 }, () => {
@@ -122,7 +121,7 @@ export class ItemComponent implements OnInit {
             rejectLabel: 'Rejeitar',
             accept: () => {
                 this.loading = true;
-                this.itemService.deleteItem(registry.id).subscribe(() => {
+                this.fuelService.deleteFuel(registry.id).subscribe(() => {
                     this.messageService.add(MessageServiceSuccess);
                     this.fetchData();
                 }, () => {
@@ -133,7 +132,7 @@ export class ItemComponent implements OnInit {
     }
 
     fetchData() {
-        this.itemService.getItems().subscribe((x: any) => {
+        this.fuelService.getFuels().subscribe((x) => {
             this.data = x.object;
             this.loading = false;
         });
