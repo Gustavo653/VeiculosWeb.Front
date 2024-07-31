@@ -13,16 +13,12 @@ import { MessageService } from 'primeng/api';
                 padding: 1rem;
             }
 
-            :host ::ng-deep .pi-eye {
-                transform: scale(1.6);
-                margin-right: 1rem;
-                color: var(--primary-color) !important;
+            :host ::ng-deep .p-input-icon-right .p-inputtext {
+                padding-left: 2.5rem;
             }
 
-            :host ::ng-deep .pi-eye-slash {
-                transform: scale(1.6);
-                margin-right: 1rem;
-                color: var(--primary-color) !important;
+            :host ::ng-deep .p-icon-wrapper {
+                padding-left: 1.0rem;
             }
         `,
     ],
@@ -47,7 +43,7 @@ export class LoginComponent {
                     });
                     this.hidden = true;
                     this.authService.saveToken(res.object.token ?? '');
-                    this.router.navigate(['']);
+                    this.navigateToHome();
                 },
                 (err: any) => {
                     this.messageService.add({
@@ -61,5 +57,9 @@ export class LoginComponent {
         }
     }
 
-    constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {}
+    navigateToHome() {
+        this.router.navigate(['']);
+    }
+
+    constructor(private authService: AuthService, private router: Router, private messageService: MessageService) { }
 }

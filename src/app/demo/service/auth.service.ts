@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-    constructor(private http: HttpClient, private storageService: StorageService) {}
+    constructor(private http: HttpClient, private storageService: StorageService) { }
 
     login(email: string, password: string) {
         return this.storageService.getAPIURL().pipe(
@@ -51,17 +51,19 @@ export class AuthService {
     }
 
     public async validarToken(): Promise<boolean> {
-        var status: number = 200;
         const url = await this.storageService.getAPIURL().toPromise();
+
+        if (this.getToken() == null) {
+            return true;
+        }
 
         try {
             let data = await this.http.get<any>(`${url}/Account/Current`).toPromise();
             this.saveFirstName(data.object.name);
             this.saveRole(data.object.role);
+            return true;
         } catch (error) {
-            status = 401;
+            return false;
         }
-
-        return status == 200;
     }
 }
