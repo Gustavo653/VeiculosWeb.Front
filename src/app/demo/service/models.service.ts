@@ -14,10 +14,10 @@ export class ModelService {
         return this.storageService.getAPIURL();
     }
 
-    getModels(brandId: string): Observable<any> {
+    getModels(type: string, brandId: string): Observable<any> {
         return this.getAPIURL().pipe(
             switchMap((url) => {
-                const apiUrl = `${url}/model/GetModelsByBrand/${brandId}`;
+                const apiUrl = `${url}/model/GetModelsByBrand/${type}/${brandId}`;
                 return this.http.get(apiUrl);
             })
         );

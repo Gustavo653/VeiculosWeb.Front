@@ -8,16 +8,16 @@ import { StorageService } from './storage.service';
     providedIn: 'root',
 })
 export class BrandService {
-    constructor(private http: HttpClient, private storageService: StorageService) { }
+    constructor(private http: HttpClient, private storageService: StorageService) {}
 
     private getAPIURL(): Observable<string> {
         return this.storageService.getAPIURL();
     }
 
-    getBrands(): Observable<any> {
+    getBrands(type: string): Observable<any> {
         return this.getAPIURL().pipe(
             switchMap((url) => {
-                const apiUrl = `${url}/brand/getbrands`;
+                const apiUrl = `${url}/brand/getbrands/${type}`;
                 return this.http.get(apiUrl);
             })
         );

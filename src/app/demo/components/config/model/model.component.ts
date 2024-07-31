@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TableColumn } from 'src/app/demo/api/base';
 import { BrandService } from 'src/app/demo/service/brand.service';
 import { ModelService } from 'src/app/demo/service/models.service';
@@ -8,6 +9,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
     templateUrl: './model.component.html',
 })
 export class ModelComponent implements OnInit {
+    type: string = '';
     loading: boolean = true;
     brands: any[] = [];
     brandId: string = '';
@@ -16,7 +18,8 @@ export class ModelComponent implements OnInit {
     constructor(
         protected layoutService: LayoutService,
         private brandService: BrandService,
-        private modelService: ModelService
+        private modelService: ModelService,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit() {
@@ -44,11 +47,15 @@ export class ModelComponent implements OnInit {
                 format: 'dd/MM/yy HH:mm:ss',
             }
         ];
-        this.fetchBrands();
+        this.route.paramMap.subscribe(params => {
+            this.type = params.get('type') ?? '';
+            this.fetchBrands();
+        });
     }
 
     fetchBrands() {
-        this.brandService.getBrands().subscribe((x) => {
+        this.loading = true;
+        this.brandService.getBrands(this.type).subscribe((x) => {
             this.brands = x.object;
             this.brandChange(null);
             this.loading = false;
@@ -65,7 +72,7 @@ export class ModelComponent implements OnInit {
 
     fetchModels(brandId: string) {
         this.loading = true;
-        this.modelService.getModels(brandId).subscribe((x) => {
+        this.modelService.getModels(this.type, brandId).subscribe((x) => {
             this.data = x.object;
             this.loading = false;
         });

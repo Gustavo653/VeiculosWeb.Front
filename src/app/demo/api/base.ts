@@ -85,13 +85,35 @@ export const MenuRoutes = [
             {
                 label: 'Gerenciar Marcas',
                 icon: 'pi pi-fw pi-sliders-h',
-                routerLink: ['/config/brands'],
+                items: [
+                    {
+                        label: 'Carros',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/config/brands/car'],
+                    },
+                    {
+                        label: 'Motos',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/config/brands/bike'],
+                    },
+                ],
             },
             {
                 label: 'Gerenciar Modelos',
                 icon: 'pi pi-fw pi-sliders-h',
-                routerLink: ['/config/models'],
-            }
+                items: [
+                    {
+                        label: 'Carros',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/config/models/car'],
+                    },
+                    {
+                        label: 'Motos',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/config/models/bike'],
+                    },
+                ],
+            },
         ],
-    }
+    },
 ];

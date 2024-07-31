@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TableColumn } from 'src/app/demo/api/base';
 import { BrandService } from 'src/app/demo/service/brand.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
@@ -7,10 +8,11 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
     templateUrl: './brand.component.html',
 })
 export class BrandComponent implements OnInit {
+    type: string = '';
     loading: boolean = true;
     cols: TableColumn[] = [];
     data: any[] = [];
-    constructor(protected layoutService: LayoutService, private brandService: BrandService) {}
+    constructor(protected layoutService: LayoutService, private brandService: BrandService, private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.cols = [
@@ -42,11 +44,15 @@ export class BrandComponent implements OnInit {
                 format: 'dd/MM/yy HH:mm:ss',
             },
         ];
-        this.fetchData();
+        this.route.paramMap.subscribe((params) => {
+            this.type = params.get('type') ?? '';
+            this.fetchData();
+        });
     }
 
     fetchData() {
-        this.brandService.getBrands().subscribe((x) => {
+        this.loading = true;
+        this.brandService.getBrands(this.type).subscribe((x) => {
             this.data = x.object;
             this.loading = false;
         });

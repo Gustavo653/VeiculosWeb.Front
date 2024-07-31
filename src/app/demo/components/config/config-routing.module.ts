@@ -8,8 +8,8 @@ import { ModelComponent } from './model/model.component';
     imports: [
         RouterModule.forChild([
             { path: 'fuels', component: FuelComponent },
-            { path: 'brands', component: BrandComponent },
-            { path: 'models', component: ModelComponent },
+            { path: 'brands/:type', component: BrandComponent },
+            { path: 'models/:type', component: ModelComponent },
         ]),
     ],
     exports: [RouterModule],
