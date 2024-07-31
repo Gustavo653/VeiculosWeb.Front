@@ -1,4 +1,3 @@
-import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { AuthService } from '../demo/service/auth.service';
@@ -18,27 +17,26 @@ import { MenuRoutes } from '../demo/api/base';
         `,
     ],
 })
-export class AppMenuComponent implements OnInit {
-    model: any[] = MenuRoutes.filter((x) => {
-        const role = this.authService.getRole();
-        if (role === 'Admin') {
-            return true;
-        }
-        return false;
-    });
+export class AppMenuComponent {
+    model: any[] = MenuRoutes.filter((route) => {
+        var role = this.authService.getRole() ?? 'Basic'
+        return route.role.includes('Basic') || (route.role.includes(role) && role === 'Admin');
+      });
 
-    constructor(public layoutService: LayoutService, private authService: AuthService, private router: Router) {}
+    constructor(public layoutService: LayoutService, private authService: AuthService, private router: Router) { }
 
-    public logout(): void {
+    redirectToLogin() {
         this.authService.clearData();
         this.router.navigate(['/login']);
     }
 
-    public showName(): string {
-        const user = this.authService.getFirstName();
-        const username = typeof user === 'string' ? user.toUpperCase() : 'USER';
-        return username;
+    isUserRegistered(): boolean {
+        return this.authService.getToken() != null;
     }
 
-    ngOnInit() {}
+    showName(): string {
+        const user = this.authService.getFirstName();
+        const username = typeof user === 'string' ? user.toUpperCase() : 'Seja bem-vindo';
+        return username;
+    }
 }

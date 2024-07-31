@@ -12,11 +12,21 @@
     <div class="user-profile">
         <h5 style="margin-top: 12px">{{ showName() }}</h5>
         <button
+            *ngIf="isUserRegistered()"
             type="submit"
             pButton
             label="Sair"
-            (click)="logout()"
-            icon="pi pi-power-off"
+            (click)="redirectToLogin()"
+            icon="pi pi-sign-out"
+            style="margin-left: auto; margin-right: 5px"
+        ></button>
+        <button
+            *ngIf="!isUserRegistered()"
+            type="submit"
+            pButton
+            label="Login"
+            (click)="redirectToLogin()"
+            icon="pi pi-sign-in"
             style="margin-left: auto; margin-right: 5px"
         ></button>
     </div>
