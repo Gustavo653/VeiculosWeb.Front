@@ -1,0 +1,20 @@
+<p-progressBar [hidden]="!loading" mode="indeterminate" [style]="{ height: '3px' }"></p-progressBar>
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>
+<div class="card" *ngIf="loading == false">
+    <h3>Gerenciar Modelos</h3>
+    <div class="flex flex-row flex-wrap mb-3">
+        <button pButton icon="pi pi-sync" label="Sincronizar modelos" class="p-button-success mr-3" (click)="sync()"></button>
+        <p-dropdown
+            (ngModelChange)="brandChange($event)"
+            [options]="brands"
+            [(ngModel)]="brandId"
+            optionLabel="name"
+            [filter]="true"
+            filterBy="name"
+            [showClear]="true"
+            placeholder="Selecione uma marca"
+        ></p-dropdown>
+    </div>
+    <app-form-table [loading]="loading" [cols]="cols" [data]="data"></app-form-table>
+</div>

@@ -81,7 +81,17 @@ export const MenuRoutes = [
                 label: 'Gerenciar Combustíveis',
                 icon: 'pi pi-fw pi-sliders-h',
                 routerLink: ['/config/fuels'],
+            },
+            {
+                label: 'Gerenciar Marcas',
+                icon: 'pi pi-fw pi-sliders-h',
+                routerLink: ['/config/brands'],
+            },
+            {
+                label: 'Gerenciar Modelos',
+                icon: 'pi pi-fw pi-sliders-h',
+                routerLink: ['/config/models'],
             }
         ],
-    },
+    }
 ];
