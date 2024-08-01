@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TableColumn } from 'src/app/demo/api/base';
+import { MessageService } from 'primeng/api';
+import { MessageServiceSuccess, TableColumn } from 'src/app/demo/api/base';
 import { BrandService } from 'src/app/demo/service/brand.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
@@ -12,14 +13,14 @@ export class BrandComponent implements OnInit {
     loading: boolean = true;
     cols: TableColumn[] = [];
     data: any[] = [];
-    constructor(protected layoutService: LayoutService, private brandService: BrandService, private route: ActivatedRoute) {}
+    constructor(protected layoutService: LayoutService, private brandService: BrandService, private route: ActivatedRoute, private messageService: MessageService) {}
 
     ngOnInit() {
         this.cols = [
             {
                 field: 'code',
                 header: 'Código',
-                type: 'number',
+                type: 'text',
             },
             {
                 field: 'name',
@@ -60,6 +61,7 @@ export class BrandComponent implements OnInit {
 
     sync() {
         this.brandService.syncBrands().subscribe(() => {
+            this.messageService.add(MessageServiceSuccess);
             this.loading = true;
             this.fetchData();
         });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TableColumn } from 'src/app/demo/api/base';
+import { MessageService } from 'primeng/api';
+import { MessageServiceSuccess, TableColumn } from 'src/app/demo/api/base';
 import { BrandService } from 'src/app/demo/service/brand.service';
 import { ModelService } from 'src/app/demo/service/models.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
@@ -19,7 +20,8 @@ export class ModelComponent implements OnInit {
         protected layoutService: LayoutService,
         private brandService: BrandService,
         private modelService: ModelService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private messageService: MessageService
     ) { }
 
     ngOnInit() {
@@ -27,7 +29,7 @@ export class ModelComponent implements OnInit {
             {
                 field: 'code',
                 header: 'Código',
-                type: 'number',
+                type: 'text',
             },
             {
                 field: 'name',
@@ -80,6 +82,7 @@ export class ModelComponent implements OnInit {
 
     sync() {
         this.modelService.syncModels().subscribe(() => {
+            this.messageService.add(MessageServiceSuccess);
             this.loading = true;
             this.fetchBrands();
         });
