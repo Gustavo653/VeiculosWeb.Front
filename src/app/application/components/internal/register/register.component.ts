@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
 @Component({
-    templateUrl: './login.component.html',
+    templateUrl: './register.component.html',
     styles: [
         `
             :host ::ng-deep .p-password input {
@@ -22,14 +22,14 @@ import { MessageService } from 'primeng/api';
         `,
     ],
 })
-export class LoginComponent {
+export class RegisterComponent {
     user: any = {};
     hidden: boolean = true;
 
-    login() {
+    createUser() {
         if (this.validateData()) {
             this.hidden = false;
-            this.authService.login(this.user).subscribe(
+            this.authService.createUser(this.user).subscribe(
                 async (res) => {
                     this.messageService.add({
                         severity: 'success',
@@ -53,8 +53,8 @@ export class LoginComponent {
     }
 
     validateData(): boolean {
-        if (!this.user.email || !this.user.password) {
-            this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Preencha todos os campos obrigatórios.' });
+        if (!this.user.email || !this.user.name) {
+            this.messageService.add({ severity: 'error', summary: 'Preencha todos os campos obrigatórios.' });
             return false;
         }
 
@@ -65,8 +65,8 @@ export class LoginComponent {
         this.router.navigate(['']);
     }
 
-    navigateToRegister() {
-        this.router.navigate(['/internal/register']);
+    navigateToLogin() {
+        this.router.navigate(['/internal/login']);
     }
 
     constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {}

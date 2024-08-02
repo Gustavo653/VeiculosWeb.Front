@@ -21,9 +21,10 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { AtomicModule } from '../atomic/atomic.module';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-    declarations: [ErrorComponent, LoginComponent],
+    declarations: [ErrorComponent, LoginComponent, RegisterComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,

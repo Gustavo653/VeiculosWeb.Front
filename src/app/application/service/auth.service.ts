@@ -5,15 +5,20 @@ import { switchMap } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-    constructor(private http: HttpClient, private storageService: StorageService) { }
+    constructor(private http: HttpClient, private storageService: StorageService) {}
 
-    login(email: string, password: string) {
+    login(data: any) {
         return this.storageService.getAPIURL().pipe(
             switchMap((url) => {
-                return this.http.post<any>(`${url}/Account/Login`, {
-                    email: email,
-                    password: password,
-                });
+                return this.http.post<any>(`${url}/Account/Login`, data);
+            })
+        );
+    }
+
+    createUser(data: any) {
+        return this.storageService.getAPIURL().pipe(
+            switchMap((url) => {
+                return this.http.post<any>(`${url}/Account`, data);
             })
         );
     }
