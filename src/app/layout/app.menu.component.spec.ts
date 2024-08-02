@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppMenuComponent } from './app.menu.component';
 import { LayoutService } from './service/app.layout.service';
-import { AuthService } from '../demo/service/auth.service';
+import { AuthService } from '../application/service/auth.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 

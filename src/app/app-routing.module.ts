@@ -1,20 +1,16 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { NotfoundComponent } from './demo/components/notfound/notfound.component';
+import { NotfoundComponent } from './application/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
-import { AuthGuard } from './demo/components/auth/auth.guard';
+import { AuthGuard } from './application/components/internal/auth.guard';
 
 @NgModule({
     imports: [
         RouterModule.forRoot(
             [
                 {
-                    path: 'login',
-                    loadChildren: () => import('./demo/components/auth/login/login.module').then((m) => m.LoginModule),
-                },
-                {
-                    path: 'error',
-                    loadChildren: () => import('./demo/components/auth/error/error.module').then((m) => m.ErrorModule),
+                    path: 'internal',
+                    loadChildren: () => import('./application/components/internal/auth.module').then((m) => m.AuthModule),
                 },
                 {
                     path: '',
@@ -23,12 +19,12 @@ import { AuthGuard } from './demo/components/auth/auth.guard';
                         {
                             path: '',
                             canActivate: [AuthGuard],
-                            loadChildren: () => import('./demo/components/home/home.module').then((m) => m.HomeModule),
+                            loadChildren: () => import('./application/components/home/home.module').then((m) => m.HomeModule),
                         },
                         {
                             path: 'config',
                             canActivate: [AuthGuard],
-                            loadChildren: () => import('./demo/components/config/config.module').then((m) => m.ConfigModule),
+                            loadChildren: () => import('./application/components/config/config.module').then((m) => m.ConfigModule),
                         },
                     ],
                 },

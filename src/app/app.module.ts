@@ -3,22 +3,22 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
-import { NotfoundComponent } from './demo/components/notfound/notfound.component';
-import { LoginModule } from './demo/components/auth/login/login.module';
-import { AuthService } from './demo/service/auth.service';
+import { NotfoundComponent } from './application/components/notfound/notfound.component';
+import { AuthService } from './application/service/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BasicInterceptor } from './demo/components/auth/basic.interceptor';
-import { StorageService } from './demo/service/storage.service';
-import { ErrorInterceptor } from './demo/components/auth/error.interceptor';
+import { BasicInterceptor } from './application/components/internal/basic.interceptor';
+import { StorageService } from './application/service/storage.service';
+import { ErrorInterceptor } from './application/components/internal/error.interceptor';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { AuthModule } from './application/components/internal/auth.module';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
     imports: [
         AppRoutingModule,
         AppLayoutModule,
-        LoginModule,
+        AuthModule,
         ToastModule,
     ],
     providers: [

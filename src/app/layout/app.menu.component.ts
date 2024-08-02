@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
-import { AuthService } from '../demo/service/auth.service';
+import { AuthService } from '../application/service/auth.service';
 import { Router } from '@angular/router';
-import { MenuRoutes } from '../demo/api/base';
+import { MenuRoutes } from '../application/api/base';
 
 @Component({
     selector: 'app-menu',
@@ -27,7 +27,7 @@ export class AppMenuComponent {
 
     redirectToLogin() {
         this.authService.clearData();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/internal/login']);
     }
 
     isUserRegistered(): boolean {

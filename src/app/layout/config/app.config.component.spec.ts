@@ -2,7 +2,7 @@
 // import { AppConfigComponent } from './app.config.component';
 // import { LayoutService } from '../service/app.layout.service';
 // import { MenuService } from '../app.menu.service';
-// import { StorageService } from 'src/app/demo/service/storage.service';
+// import { StorageService } from 'src/app/application/service/storage.service';
 // import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 // describe('AppConfigComponent', () => {
