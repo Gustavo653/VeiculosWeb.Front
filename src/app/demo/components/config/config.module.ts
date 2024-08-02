@@ -23,10 +23,16 @@ import { BrandComponent } from './brand/brand.component';
 import { ModelComponent } from './model/model.component';
 import { StateComponent } from './state/state.component';
 import { CityComponent } from './city/city.component';
+import { GearboxComponent } from './gearbox/gearbox.component';
+import { FeatureComponent } from './feature/feature.component';
+import { ColorComponent } from './color/color.component';
 
 @NgModule({
     declarations: [
         FuelComponent,
+        GearboxComponent,
+        FeatureComponent,
+        ColorComponent,
         BrandComponent,
         ModelComponent,
         StateComponent,

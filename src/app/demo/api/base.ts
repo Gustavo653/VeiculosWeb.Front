@@ -83,6 +83,32 @@ export const MenuRoutes = [
                 routerLink: ['/config/fuels'],
             },
             {
+                label: 'Gerenciar Câmbios',
+                icon: 'pi pi-fw pi-sliders-h',
+                routerLink: ['/config/gearboxes'],
+            },
+            {
+                label: 'Gerenciar Cores',
+                icon: 'pi pi-fw pi-sliders-h',
+                routerLink: ['/config/colors'],
+            },
+            {
+                label: 'Gerenciar Opcionais',
+                icon: 'pi pi-fw pi-sliders-h',
+                items: [
+                    {
+                        label: 'Carros',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/config/features/car'],
+                    },
+                    {
+                        label: 'Motos',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/config/features/bike'],
+                    },
+                ],
+            },
+            {
                 label: 'Gerenciar Marcas',
                 icon: 'pi pi-fw pi-sliders-h',
                 items: [
