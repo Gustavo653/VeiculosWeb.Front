@@ -30,22 +30,16 @@ export class RegisterComponent {
         if (this.validateData()) {
             this.hidden = false;
             this.authService.createUser(this.user).subscribe(
-                async (res) => {
+                () => {
                     this.messageService.add({
                         severity: 'success',
-                        summary: 'Sua solicitação foi processada com sucesso!',
-                        detail: `Estamos lhe redirecionando para a página principal.`,
+                        summary: 'Seu usuário foi processada com sucesso!',
+                        detail: `Obtenha o código enviado no seu e-mail.`,
                     });
                     this.hidden = true;
-                    this.authService.saveToken(res.object.token ?? '');
-                    this.navigateToHome();
+                    this.navigateToConfirmCode();
                 },
-                (err: any) => {
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Houve um erro ao processar sua solicitação!',
-                        detail: `Código: ${err.status} \n Mensagem: ${err.error.message}`,
-                    });
+                () => {
                     this.hidden = true;
                 }
             );
@@ -61,8 +55,8 @@ export class RegisterComponent {
         return true;
     }
 
-    navigateToHome() {
-        this.router.navigate(['']);
+    navigateToConfirmCode() {
+        this.router.navigate(['/internal/confirm-code']);
     }
 
     navigateToLogin() {

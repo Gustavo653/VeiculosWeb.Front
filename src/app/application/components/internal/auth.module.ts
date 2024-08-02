@@ -22,9 +22,10 @@ import { ToastModule } from 'primeng/toast';
 import { PasswordModule } from 'primeng/password';
 import { AtomicModule } from '../atomic/atomic.module';
 import { RegisterComponent } from './register/register.component';
+import { ConfirmCodeComponent } from './confirm-code/confirm-code.component';
 
 @NgModule({
-    declarations: [ErrorComponent, LoginComponent, RegisterComponent],
+    declarations: [ErrorComponent, LoginComponent, RegisterComponent, ConfirmCodeComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,

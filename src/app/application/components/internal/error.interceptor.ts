@@ -4,12 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { AuthService } from '../../service/auth.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private router: Router, private messageService: MessageService) { }
+    constructor(private router: Router, private messageService: MessageService, private authService: AuthService) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
@@ -25,7 +26,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                         severity: 'warn',
                         summary: 'Sua sessão expirou.',
                     });
-                    this.router.navigate(['login']);
+                    this.authService.clearData();
+                    this.router.navigate(['/internal/login']);
                 } else if (error.status === 403) {
                     this.messageService.add({
                         severity: 'warn',

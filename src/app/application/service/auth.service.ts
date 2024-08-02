@@ -23,6 +23,14 @@ export class AuthService {
         );
     }
 
+    confirmEmail(data: any) {
+        return this.storageService.getAPIURL().pipe(
+            switchMap((url) => {
+                return this.http.post<any>(`${url}/Account/ConfirmEmail`, data);
+            })
+        );
+    }
+
     public saveToken(token: string) {
         this.storageService.saveData('token', token);
     }

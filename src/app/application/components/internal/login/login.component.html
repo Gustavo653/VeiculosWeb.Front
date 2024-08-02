@@ -6,15 +6,20 @@
         <div class="col-12 xl:col-6" style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)">
             <div class="h-full w-full m-0 py-7 px-4" style="border-radius: 53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0))">
                 <div class="w-full md:w-10 mx-auto">
-                    <label class="block text-center text-900 font-bold mb-4" style="font-size: 2rem;">Insira suas credenciais para continuar</label>
-                    <label class="block text-900 text-xl font-medium mb-2">E-mail<small class="p-error">*</small></label>
-                    <input type="text" placeholder="E-mail" pInputText class="w-full mb-3" style="padding: 1rem" [(ngModel)]="user.email" />
-                    <label class="block text-900 font-medium text-xl mb-2">Senha<small class="p-error">*</small></label>
-                    <p-password [feedback]="false" placeholder="Senha" [toggleMask]="true" styleClass="w-full mb-3" [(ngModel)]="user.password"></p-password>
+                    <h2 class="block text-center text-900 font-bold mb-4" style="font-size: 2rem;">Bem-vindo de volta!</h2>
+                    <p class="text-center text-700 mb-5">Insira suas credenciais para continuar.</p>
+                    <div class="mb-4">
+                        <label for="email" class="block text-900 text-xl font-medium mb-2">E-mail<small class="p-error">*</small></label>
+                        <input id="email" type="text" placeholder="Digite seu e-mail" pInputText class="w-full mb-3" style="padding: 1rem" [(ngModel)]="user.email" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-900 font-medium text-xl mb-2">Senha<small class="p-error">*</small></label>
+                        <p-password id="password" [feedback]="false" placeholder="Digite sua senha" [toggleMask]="true" styleClass="w-full mb-3" [(ngModel)]="user.password"></p-password>
+                    </div>
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                         <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Esqueceu sua senha?</a>
                     </div>
-                    <div class="flex justify-content-between gap-3">
+                    <div class="flex justify-content-between gap-3 mb-4">
                         <button pButton pRipple label="Entrar" class="w-full p-3 text-xl" (click)="login()"></button>
                         <button pButton pRipple label="Registrar" class="w-full p-3 text-xl" (click)="navigateToRegister()"></button>
                     </div>

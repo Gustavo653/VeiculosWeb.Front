@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/application/service/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { MessageBundle } from '@angular/compiler';
+import { MessageServiceSuccess } from 'src/app/application/api/base';
 
 @Component({
-    templateUrl: './login.component.html',
+    templateUrl: './confirm-code.component.html',
     styles: [
         `
             :host ::ng-deep .p-password input {
@@ -22,23 +24,19 @@ import { MessageService } from 'primeng/api';
         `,
     ],
 })
-export class LoginComponent {
+export class ConfirmCodeComponent {
     user: any = {};
     hidden: boolean = true;
 
-    login() {
+    confirmEmail() {
         if (this.validateData()) {
             this.hidden = false;
-            this.authService.login(this.user).subscribe(
-                (res) => {
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Sua solicitação foi processada com sucesso!',
-                        detail: `Estamos lhe redirecionando para a página principal.`,
-                    });
+            this.authService.confirmEmail(this.user).subscribe(
+                () => {
+                    this.messageService.add(MessageServiceSuccess);
                     this.hidden = true;
-                    this.authService.saveToken(res.object.token ?? '');
-                    this.navigateToHome();
+                    console.log('redirect');
+                    this.navigateToLogin();
                 },
                 () => {
                     this.hidden = true;
@@ -48,8 +46,14 @@ export class LoginComponent {
     }
 
     validateData(): boolean {
-        if (!this.user.email || !this.user.password) {
+        if (!this.user.email || !this.user.code || !this.user.password) {
             this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'Preencha todos os campos obrigatórios.' });
+            return false;
+        }
+
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+        if (!passwordRegex.test(this.user.password)) {
+            this.messageService.add({ severity: 'error', summary: 'Erro', detail: 'A senha deve ter no mínimo 6 caracteres, contendo letras e números.' });
             return false;
         }
 
@@ -60,8 +64,8 @@ export class LoginComponent {
         this.router.navigate(['']);
     }
 
-    navigateToRegister() {
-        this.router.navigate(['/internal/register']);
+    navigateToLogin() {
+        this.router.navigate(['/internal/login']);
     }
 
     constructor(private authService: AuthService, private router: Router, private messageService: MessageService) {}
