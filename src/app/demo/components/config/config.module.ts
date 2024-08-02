@@ -21,12 +21,16 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { FuelComponent } from './fuel/fuel.component';
 import { BrandComponent } from './brand/brand.component';
 import { ModelComponent } from './model/model.component';
+import { StateComponent } from './state/state.component';
+import { CityComponent } from './city/city.component';
 
 @NgModule({
     declarations: [
         FuelComponent,
         BrandComponent,
-        ModelComponent
+        ModelComponent,
+        StateComponent,
+        CityComponent
     ],
     imports: [
         CommonModule,

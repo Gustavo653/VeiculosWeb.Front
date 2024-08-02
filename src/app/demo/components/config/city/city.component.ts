@@ -1,28 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { MessageServiceSuccess, TableColumn } from 'src/app/demo/api/base';
-import { BrandService } from 'src/app/demo/service/brand.service';
-import { ModelService } from 'src/app/demo/service/model.service';
+import { CityService } from 'src/app/demo/service/city.service';
+import { StateService } from 'src/app/demo/service/state.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
-    templateUrl: './model.component.html',
+    templateUrl: './city.component.html',
 })
-export class ModelComponent implements OnInit {
-    type: string = '';
+export class CityComponent implements OnInit {
     loading: boolean = true;
-    brands: any[] = [];
-    brandId: string = '';
+    states: any[] = [];
+    stateId: string = '';
     cols: TableColumn[] = [];
     data: any[] = [];
-    constructor(
-        protected layoutService: LayoutService,
-        private brandService: BrandService,
-        private modelService: ModelService,
-        private route: ActivatedRoute,
-        private messageService: MessageService
-    ) { }
+    constructor(protected layoutService: LayoutService, private stateService: StateService, private cityService: CityService, private messageService: MessageService) {}
 
     ngOnInit() {
         this.cols = [
@@ -47,44 +39,41 @@ export class ModelComponent implements OnInit {
                 header: 'Atualizado em',
                 type: 'date',
                 format: 'dd/MM/yy HH:mm:ss',
-            }
+            },
         ];
-        this.route.paramMap.subscribe(params => {
-            this.type = params.get('type') ?? '';
-            this.fetchBrands();
-        });
+        this.fetchStates();
     }
 
-    fetchBrands() {
+    fetchStates() {
         this.loading = true;
-        this.brandService.getBrands(this.type).subscribe((x) => {
-            this.brands = x.object;
-            this.brandChange(null);
+        this.stateService.getStates().subscribe((x) => {
+            this.states = x.object;
+            this.stateChange(null);
             this.loading = false;
         });
     }
 
-    brandChange(event: any) {
+    stateChange(event: any) {
         if (event == null) {
             this.data = [];
             return;
         }
-        this.fetchModels(event.id);
+        this.fetchCitys(event.id);
     }
 
-    fetchModels(brandId: string) {
+    fetchCitys(stateId: string) {
         this.loading = true;
-        this.modelService.getModels(this.type, brandId).subscribe((x) => {
+        this.cityService.getCitys(stateId).subscribe((x) => {
             this.data = x.object;
             this.loading = false;
         });
     }
 
     sync() {
-        this.modelService.syncModels().subscribe(() => {
+        this.cityService.syncCitys().subscribe(() => {
             this.messageService.add(MessageServiceSuccess);
             this.loading = true;
-            this.fetchBrands();
+            this.fetchStates();
         });
     }
 }

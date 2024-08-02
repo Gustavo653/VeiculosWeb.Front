@@ -114,6 +114,16 @@ export const MenuRoutes = [
                     },
                 ],
             },
+            {
+                label: 'Gerenciar Estados',
+                icon: 'pi pi-fw pi-sliders-h',
+                routerLink: ['/config/states'],
+            },
+            {
+                label: 'Gerenciar Cidades',
+                icon: 'pi pi-fw pi-sliders-h',
+                routerLink: ['/config/cities'],
+            },
         ],
     },
 ];
