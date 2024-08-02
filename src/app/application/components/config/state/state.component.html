@@ -1,6 +1,6 @@
 <p-progressBar [hidden]="!loading" mode="indeterminate" [style]="{ height: '3px' }"></p-progressBar>
 <p-confirmDialog></p-confirmDialog>
-<p-toast></p-toast>
+<p-toast />
 <div class="card" *ngIf="loading == false">
     <h3>Gerenciar Estados</h3>
     <button pButton icon="pi pi-sync" label="Sincronizar estados" class="p-button-success mb-3" (click)="sync()"></button>
