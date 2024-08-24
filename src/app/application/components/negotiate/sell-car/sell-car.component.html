@@ -1,0 +1,57 @@
+<p-progressBar [hidden]="!loading" mode="indeterminate" [style]="{ height: '3px' }"> </p-progressBar>
+
+<div class="card p-fluid" *ngIf="!loading">
+    <h3 class="mb-4">Vender Carro</h3>
+
+    <div class="grid formgrid">
+        <div class="col-12">
+            <h4>Informações sobre o veículo</h4>
+        </div>
+
+        <div class="field col-12 md:col-6 lg:col-4">
+            <label for="brandId">Marca</label>
+            <p-dropdown id="brandId" [options]="brands" [(ngModel)]="brandId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione uma marca"> </p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-6 lg:col-4">
+            <label for="modelId">Modelo</label>
+            <p-dropdown id="modelId" [options]="models" [(ngModel)]="modelId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione um modelo"> </p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-6 lg:col-4">
+            <label for="colorId">Cor</label>
+            <p-dropdown id="colorId" [options]="colors" [(ngModel)]="colorId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione uma cor"> </p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-6 lg:col-4">
+            <label for="gearboxId">Câmbio</label>
+            <p-dropdown id="gearboxId" [options]="gearboxes" [(ngModel)]="gearboxId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione um tipo de câmbio"></p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-6 lg:col-4">
+            <label for="fuelId">Combustível</label>
+            <p-dropdown id="fuelId" [options]="fuels" [(ngModel)]="fuelId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione um tipo de combustível"></p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-6 lg:col-4">
+            <label for="featureId">Funcionalidade</label>
+            <p-dropdown id="featureId" [options]="features" [(ngModel)]="featureId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione uma funcionalidade"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="grid formgrid mt-4">
+        <div class="col-12">
+            <h4>Onde está o veículo?</h4>
+        </div>
+
+        <div class="field col-12 md:col-6">
+            <label for="stateId">Estado</label>
+            <p-dropdown id="stateId" [options]="states" [(ngModel)]="stateId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione um estado"></p-dropdown>
+        </div>
+
+        <div class="field col-12 md:col-6">
+            <label for="cityId">Cidade</label>
+            <p-dropdown id="cityId" [options]="cities" [(ngModel)]="cityId" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecione uma cidade"></p-dropdown>
+        </div>
+    </div>
+</div>

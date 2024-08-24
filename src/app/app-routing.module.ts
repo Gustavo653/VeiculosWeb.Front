@@ -26,6 +26,11 @@ import { AuthGuard } from './application/components/internal/auth.guard';
                             canActivate: [AuthGuard],
                             loadChildren: () => import('./application/components/config/config.module').then((m) => m.ConfigModule),
                         },
+                        {
+                            path: 'negotiate',
+                            canActivate: [AuthGuard],
+                            loadChildren: () => import('./application/components/negotiate/negotiate.module').then((m) => m.NegotiateModule),
+                        },
                     ],
                 },
                 { path: 'pages/notfound', component: NotfoundComponent },

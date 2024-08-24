@@ -69,7 +69,7 @@ export const MenuRoutes = [
             {
                 label: 'Vender',
                 icon: 'pi pi-fw pi-chart-line',
-                routerLink: [''],
+                routerLink: ['/negotiate/sell-car'],
             },
         ],
     },
